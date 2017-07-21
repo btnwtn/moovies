@@ -1,4 +1,7 @@
 import compose from "recompose/compose";
+import slug from "slug";
+
+export const slugify = (str: string) => slug(str.toLowerCase());
 
 export const excerptify = (cutoff: number) => (str: string) => {
   if (str.length <= cutoff) return str;

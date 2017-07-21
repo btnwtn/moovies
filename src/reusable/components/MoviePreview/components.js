@@ -48,7 +48,10 @@ export const RatingBadge = props =>
     <Badge {...props} />
   </RatingContainer>;
 
-export const Title = styled.h2`margin: 0;`;
+export const Title = styled.h2`
+  margin: 0;
+  color: #fff;
+`;
 
 export const Overview = styled.p`
   margin: 0;
