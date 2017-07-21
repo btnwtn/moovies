@@ -1,23 +1,33 @@
+// @flow
 import React, { Component } from "react";
+import styled, { css } from "styled-components";
 import Movies from "./lib/Movies";
 
-const HTTPS_ENABLED =
-  process.env.REACT_APP_HTTPS_ENABLED.toLowerCase() === "true";
+import Container from "./reusable/components/Container";
+import MoviePreview from "./reusable/components/MoviePreview";
 
-const PosterSizes = {
-  TINY: "w92",
-  SMALLER: "w154",
-  SMALL: "w185",
-  MEDIUM: "w300",
-  LARGE: "w500",
-  ORIGINAL: "original"
-};
+const MovieGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, [col] 1fr);
+  grid-template-rows: minmax(400px, auto);
+  grid-gap: .75rem;
+  @media (max-width: 769px) {
+    grid-template-columns: repeat(1, [col] 1fr);
+  }
+`;
 
-const Poster = ({ src, size = PosterSizes.LARGE, ...rest }) => {
-  const PROTOCOL = HTTPS_ENABLED ? "https://" : "http://";
-  const BASE_URL = "image.tmdb.org/t/p/";
-  return <img src={`${PROTOCOL}${BASE_URL}${size}/${src}`} alt="" {...rest} />;
-};
+const featuredMixin = css`
+  grid-row: 1;
+  grid-column: col 1 / span 2;
+  height: 450px;
+`;
+
+const PreviewContainer = styled.div`
+  height: 100%;
+  min-height: 300px;
+
+  ${({ featured }) => featured && featuredMixin};
+`;
 
 class App extends Component {
   state = {
@@ -32,14 +42,20 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <h1>Moovies</h1>
-        {this.state.popularMovies.map(movie =>
-          <div key={movie.id}>
-            <Poster src={movie.poster_path} alt={movie.title} />
-          </div>
-        )}
-      </div>
+        <MovieGrid>
+          {this.state.popularMovies.map((movie, i) =>
+            <PreviewContainer key={movie.id} featured={i === 0}>
+              <MoviePreview
+                image={movie.backdrop_path}
+                featured={i === 0}
+                {...movie}
+              />
+            </PreviewContainer>
+          )}
+        </MovieGrid>
+      </Container>
     );
   }
 }

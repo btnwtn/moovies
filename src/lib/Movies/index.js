@@ -1,4 +1,5 @@
 import qs from "qs";
+import * as config from "./config";
 
 const toJSON = response => response.json();
 
@@ -34,6 +35,17 @@ const Api = {
   }
 };
 
+export const PosterSizes = config.PosterSizes;
+export const BackdropSizes = config.BackdropSizes;
+
+const HTTPS_ENABLED =
+  process.env.REACT_APP_HTTPS_ENABLED.toLowerCase() === "true";
+
+const PROTOCOL = HTTPS_ENABLED ? "https://" : "http://";
+
+const BASE_IMAGE_URL = "image.tmdb.org/t/p/";
+
 export default {
-  getPopular: () => Api.get("/3/movie/popular")
+  getPopular: () => Api.get("/3/movie/popular"),
+  image: (src, size) => `${PROTOCOL}${BASE_IMAGE_URL}${size}/${src}`
 };

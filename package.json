@@ -4,15 +4,21 @@
   "private": true,
   "proxy": "https://api.themoviedb.org",
   "dependencies": {
+    "normalize.css": "^7.0.0",
     "qs": "^6.5.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.10"
+    "react-scripts": "1.0.10",
+    "recompose": "^0.24.0",
+    "styled-components": "^2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.50.0"
   }
 }
