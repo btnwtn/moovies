@@ -4,7 +4,14 @@
 
 ## Getting Started
 
-This project was bootstrapped by [`create-react-app`](https://github.com/facebookincubator/create-react-app), clone this repo and run:
+Copy `example.env` to `.env` and update the `REACT_APP_MOVIE_DB_AP_KEY` to use your own
+Movie DB API key.
+
+```
+$ cp example.env .env
+```
+
+Because this project was bootstrapped by [`create-react-app`](https://github.com/facebookincubator/create-react-app), you can boot up the app by running:
 
 ```
 $ yarn start
