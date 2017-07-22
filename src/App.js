@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from "react";
-import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Movies from "./lib/Movies";
 
 import Index from "./pages/Index";

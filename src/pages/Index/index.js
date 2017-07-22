@@ -31,7 +31,7 @@ const Index = ({ movies }) =>
     <h1>Moovies</h1>
     <Grid>
       {movies.map((movie, i) =>
-        <PreviewContainer key={movie.id} featured={i % 3 == 0 && i < 6}>
+        <PreviewContainer key={movie.id} featured={i % 3 === 0 && i < 6}>
           <Link to={`/${movie.id}/${slugify(movie.title)}`}>
             <MoviePreview
               image={movie.backdrop_path}
