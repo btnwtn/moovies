@@ -15,6 +15,8 @@ class Search extends Component {
     query: ""
   };
 
+  subject: rxjs$Subject<*>
+
   constructor() {
     super();
     this.subject = new Rx.Subject();
@@ -22,7 +24,7 @@ class Search extends Component {
   }
 
   componentDidMount() {
-    this.keyListener = document.addEventListener(
+    document.addEventListener(
       "keydown",
       this.handleKeyPress,
       false
@@ -30,23 +32,23 @@ class Search extends Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener("keydown", this.keyListener);
+    document.removeEventListener("keydown", this.handleKeyPress, false);
   }
 
-  handleKeyPress = event =>
+  handleKeyPress = (event: Event) =>
     event.key === "Escape" &&
     this.props.handleEscape &&
     this.props.handleEscape();
 
-  handleChange = event => {
+  handleChange = (event: InputEvent) => {
     const query = event.target.value;
     this.subject.next(query);
     this.setState({ query });
   };
 
-  handleFocus = event => event.target.value && this.handleChange(event);
+  handleFocus = (event: InputEvent) => event.target.value && this.handleChange(event);
 
-  processQuery = query => {
+  processQuery = (query: string) => {
     if (!query) return;
 
     Movies.search(query)
@@ -57,7 +59,6 @@ class Search extends Component {
   render() {
     return (
       <SearchBar
-        innerRef={node => (this._input = node)}
         type="search"
         value={this.state.query}
         onChange={this.handleChange}

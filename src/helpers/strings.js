@@ -1,4 +1,5 @@
-import compose from "recompose/compose";
+// @flow
+import { compose } from "recompose";
 import slug from "slug";
 
 export const slugify = (str: string) => slug(str.toLowerCase());
@@ -12,7 +13,7 @@ export const excerptify = (cutoff: number) => (str: string) => {
   const join = a => a.join("");
 
   const firstSentence = compose(head, split("."));
-
+  
   const sentence = firstSentence(str);
 
   if (length(sentence) <= cutoff) {

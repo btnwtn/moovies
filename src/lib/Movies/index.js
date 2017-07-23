@@ -1,3 +1,4 @@
+// @flow
 import qs from "qs";
 import * as config from "./config";
 import image from "./image";
@@ -38,7 +39,7 @@ const Api = {
 
 const getPopular = () => Api.get("/3/movie/popular");
 
-const search = (query, options = {}) =>
+const search = (query: string, options: {} = {}) =>
   Api.get("/3/search/movie", { query, ...options, include_adult: false });
 
 export const PosterSizes = config.PosterSizes;

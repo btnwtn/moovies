@@ -1,5 +1,6 @@
+// @flow
 import React from "react";
-import pure from "recompose/pure";
+import { pure } from "recompose";
 import styled from "styled-components";
 
 const Hero = styled.div`
@@ -35,7 +36,7 @@ const Brand = pure(() =>
   </SiteTitle>
 );
 
-export default props =>
+export default (props: any) =>
   <Hero>
     <Brand />
     {props.children}

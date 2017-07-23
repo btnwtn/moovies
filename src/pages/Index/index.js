@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import MoviePreview from "../../reusable/components/MoviePreview";
@@ -102,7 +103,7 @@ const Result = result =>
         {extractExcerpt(result.overview)}
       </Overview>
     </ResultContent>
-  </ResultContainer>;
+</ResultContainer>;
 
 class Index extends Component {
   state = {
@@ -110,7 +111,7 @@ class Index extends Component {
     searchResults: []
   };
 
-  setSearchResults = searchResults =>
+  setSearchResults = (searchResults: Movie[]) =>
     this.setState({ searchResults, showSearchResults: true });
 
   toggleShowSearchResults = () =>
@@ -130,7 +131,7 @@ class Index extends Component {
 
             {showSearchResults &&
               <ResultsContainer>
-                {searchResults.map(movie =>
+                {searchResults.map((movie: Movie) =>
                   <ResultLink
                     key={movie.id}
                     to={`/${movie.id}/${slugify(movie.title)}`}
@@ -144,7 +145,7 @@ class Index extends Component {
         </Hero>
 
         <Grid>
-          {this.props.movies.map((movie, i) =>
+          {this.props.movies.map((movie: Movie, i) =>
             <PreviewContainer
               key={movie.id}
               featured={i === 0 || movie.vote_average >= 7.5}

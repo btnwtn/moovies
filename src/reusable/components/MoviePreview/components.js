@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import styled from "styled-components";
 import Movies, { BackdropSizes } from "../../../lib/Movies";
@@ -43,7 +44,7 @@ const Badge = styled.span`
 
 const RatingContainer = styled.div`flex: 0 1.75rem;`;
 
-export const RatingBadge = props =>
+export const RatingBadge = (props: any) =>
   <RatingContainer>
     <Badge {...props} />
   </RatingContainer>;

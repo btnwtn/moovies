@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import { extractExcerpt } from "../../../helpers";
 
@@ -17,6 +18,11 @@ const MoviePreview = ({
   title,
   overview,
   ...rest
+}: {
+  featured: boolean,
+  vote_average: string | number,
+  title: string,
+  overview: string
 }) =>
   <Container {...rest}>
     <Content featured={featured}>
