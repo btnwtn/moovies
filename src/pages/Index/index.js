@@ -19,7 +19,7 @@ const ResultsContainer = styled.div`
   top: 3rem;
   left: 0;
   width: 100%;
-  height: 50vh;
+  max-height: 50vh;
   z-index: 2;
   overflow: auto;
   border-radius: 3px;
@@ -80,6 +80,27 @@ const ResultLink = styled(Link)`
   text-decoration: none;
 `;
 
+const NoResults = styled.div`
+  display: flex;
+  align-items: center;
+  padding: .5rem;
+`;
+
+const Message = styled.p`
+  margin: 0;
+  color: #646464;
+`;
+
+const CloseButton = styled.button`
+  margin-left: auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  color: #383838;
+`;
+
 const Result = result =>
   <ResultContainer>
     <Poster
@@ -103,7 +124,7 @@ const Result = result =>
         {extractExcerpt(result.overview)}
       </Overview>
     </ResultContent>
-</ResultContainer>;
+  </ResultContainer>;
 
 class Index extends Component {
   state = {
@@ -131,15 +152,25 @@ class Index extends Component {
 
             {showSearchResults &&
               <ResultsContainer>
-                {searchResults.map((movie: Movie) =>
-                  <ResultLink
-                    key={movie.id}
-                    to={`/${movie.id}/${slugify(movie.title)}`}
-                    title={movie.title}
-                  >
-                    <Result key={movie.id} {...movie} />
-                  </ResultLink>
-                )}
+                {searchResults.length
+                  ? searchResults.map((movie: Movie) =>
+                      <ResultLink
+                        key={movie.id}
+                        to={`/${movie.id}/${slugify(movie.title)}`}
+                        title={movie.title}
+                      >
+                        <Result key={movie.id} {...movie} />
+                      </ResultLink>
+                    )
+                  : <NoResults>
+                      <Message>No results found…</Message>
+                      <CloseButton
+                        onClick={this.toggleShowSearchResults}
+                        title="Close Results Panel"
+                      >
+                        &times;
+                      </CloseButton>
+                    </NoResults>}
               </ResultsContainer>}
           </div>
         </Hero>
