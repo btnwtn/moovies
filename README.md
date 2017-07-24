@@ -17,6 +17,14 @@ Because this project was bootstrapped by [`create-react-app`](https://github.com
 $ yarn start
 ```
 
+## Running Tests
+
+Tests are supported via Jest:
+
+```
+$ yarn test
+```
+
 ## Todo
 
 All data is currently requested directly from the Movies DB API. To cut down on
@@ -27,6 +35,7 @@ require a Redux implementation, which could also be used as an in-memory cache.
 
 - Implement Redux.
 - Implement Redux-Persist.
+- Integration testing via Nightmare?
 
 Search bar is currently only on the Index, would be nice to incorporate this
 onto the MovieDetail page.
