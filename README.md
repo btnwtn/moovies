@@ -2,6 +2,12 @@
 
 > Playing with the Movie DB API
 
+## Preview
+
+You can see a preview of this project here:
+
+[http://btn-moovies.netlify.com/](http://btn-moovies.netlify.com/)
+
 ## Getting Started
 
 Copy `example.env` to `.env` and update the `REACT_APP_MOVIE_DB_AP_KEY` to use your own
@@ -38,6 +44,7 @@ is super easy to do with
 [`redux-persist`](https://github.com/rt2zz/redux-persist). Which would in turn
 require a Redux implementation, which could also be used as an in-memory cache.
 
+- Update the Page title via React-Helmet…
 - Implement Redux.
 - Implement Redux-Persist.
 - Integration testing via Nightmare?
