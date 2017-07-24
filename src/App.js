@@ -4,6 +4,7 @@ import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Movies from "./lib/Movies";
 
 import Index from "./pages/Index";
+import MovieDetail from "./pages/MovieDetail";
 
 import Container from "./reusable/components/Container";
 
@@ -28,6 +29,7 @@ class App extends Component {
               path="/"
               render={() => <Index movies={this.state.popularMovies} />}
             />
+            <Route path="/:movieId" component={MovieDetail} />
           </Switch>
         </Container>
       </Router>
