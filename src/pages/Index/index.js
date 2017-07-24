@@ -36,7 +36,7 @@ class Index extends Component {
 
             {showSearchResults &&
               <SearchResults
-                results={this.state.searchResults}
+                results={searchResults}
                 handleClose={this.toggleShowSearchResults}
               />}
           </div>

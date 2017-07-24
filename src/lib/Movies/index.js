@@ -42,11 +42,23 @@ const getPopular = () => Api.get("/3/movie/popular");
 const search = (query: string, options: {} = {}) =>
   Api.get("/3/search/movie", { query, ...options, include_adult: false });
 
+const getDetails = (movieId: number, options: {} = {}) =>
+  Api.get(`/3/movie/${movieId}`, options);
+
+const getVideos = (movieId: number, options: {} = {}) =>
+  Api.get(`/3/movie/${movieId}/videos`, options);
+
+const getRecommendations = (movieId: number, options: {} = {}) =>
+  Api.get(`/3/movie/${movieId}/recommendations`, options);
+
 export const PosterSizes = config.PosterSizes;
 export const BackdropSizes = config.BackdropSizes;
 
 export default {
   getPopular,
+  getDetails,
+  getVideos,
+  getRecommendations,
   image,
   search
 };

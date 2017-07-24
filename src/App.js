@@ -29,7 +29,7 @@ class App extends Component {
               path="/"
               render={() => <Index movies={this.state.popularMovies} />}
             />
-            <Route path="/:movieId" component={MovieDetail} />
+            <Route path="/:movieId/:slug" component={MovieDetail} />
           </Switch>
         </Container>
       </Router>
