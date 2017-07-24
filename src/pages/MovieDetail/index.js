@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import type { Match } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { slugify } from "../../helpers";
 import ResponsiveEmbed from "react-responsive-embed";
 import Movies, { BackdropSizes, PosterSizes } from "../../lib/Movies";
@@ -33,14 +33,18 @@ export default class MovieDetail extends Component {
     movie: {}
   };
 
-  getStateFromAPI(props) {
+  getStateFromAPI(props: { match: Match }) {
     const { movieId } = props.match.params;
+
+    if (!movieId) {
+      return Promise.resolve({})
+    }
 
     return new Promise((resolve, reject) =>
       Promise.all([
-        Movies.getDetails(movieId),
-        Movies.getVideos(movieId),
-        Movies.getRecommendations(movieId)
+        Movies.getDetails(parseInt(movieId, 10)),
+        Movies.getVideos(parseInt(movieId, 10)),
+        Movies.getRecommendations(parseInt(movieId, 10))
       ])
         .then(([movie, videos, recommendations]) =>
           resolve({
@@ -56,17 +60,21 @@ export default class MovieDetail extends Component {
 
   componentDidMount() {
     this.getStateFromAPI(this.props)
-      .then(nextState => this.setState(nextState))
+      .then((nextState: Object) => this.setState(nextState))
       .catch(console.error);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: { match: Match }) {
     this.getStateFromAPI(nextProps)
-      .then(nextState => this.setState(nextState))
+      .then((nextState: Object) => this.setState(nextState))
       .catch(console.error);
   }
 
   render() {
+    if (!this.props.match.params.movieId) {
+      return <Redirect to="/" />;
+    }
+
     if (this.state.loading) {
       return null;
     }
