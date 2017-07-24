@@ -25,6 +25,11 @@ Tests are supported via Jest:
 $ yarn test
 ```
 
+## Building for Production
+
+Running `yarn build` will build a production ready deploy to the `build`
+folder.
+
 ## Todo
 
 All data is currently requested directly from the Movies DB API. To cut down on
