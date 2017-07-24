@@ -37,6 +37,9 @@ onto the MovieDetail page.
 refactor this. Actually, this would probably be replaced by a Redux
 implementation anyway.
 
+There's a strange bug with back button history on the MovieDetail page. Look into and
+fix this.
+
 ## Supported Browsers
 
 Because this is a technical demo I will be using `display: grid`. The app should
